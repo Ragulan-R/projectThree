@@ -12,9 +12,9 @@ const Photo = ({
       <div className='photoDetails'>
         <h6>{name}</h6>
         <p>{likes} likes</p>
-        <p>
+        <h6>
           <a href={portfolio_url}>Portfolio</a>
-        </p>
+        </h6>
       </div>
     </section>
   )
