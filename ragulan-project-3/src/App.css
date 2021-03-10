@@ -1,5 +1,8 @@
+/* FONT */
+
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
 
+/* SET UP SNIPPET */
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -231,22 +234,19 @@ template {
   overflow: hidden;
 }
 
-/* Global Styles */
+/* END OF SET UP SNIPPET */
+
+/* GLOBAL */
+
 body {
   text-align: center;
-  background: #b0d0d3;
+  background-color: #8ec5fc;
+  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+  /* background-size: cover; */
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
   line-height: 1.5;
   font-size: 2rem;
-}
-
-ul {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
 }
 
 /* Section Styles */
@@ -256,10 +256,39 @@ a {
   max-width: 1200px;
 }
 
-/* Photo styles */
+/* LOGO AND SUBHEADING */
 
-.photo,
-img {
+.logo {
+  text-transform: uppercase;
+  color: white;
+}
+
+/* SEARCH BAR AND BUTTON*/
+.search {
+  width: 95vw;
+  padding: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.searchButton {
+  padding: 0.8rem;
+  border-radius: 30px;
+  color: black;
+  margin: 0.5rem;
+}
+
+/* PHOTOS */
+.photos {
+  padding: 4rem 0;
+}
+
+.photo {
+  height: 15rem;
+  position: relative;
+}
+
+.photo img {
   width: 100%;
   height: 100%;
   display: block;
@@ -273,6 +302,15 @@ img {
   display: grid;
   gap: 2.5rem;
   grid-template-columns: repeat(3, 1fr);
+}
+
+.photoDetails {
+  position: absolute;
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 img {

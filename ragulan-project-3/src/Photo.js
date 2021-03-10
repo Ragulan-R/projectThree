@@ -9,9 +9,11 @@ const Photo = ({
   return (
     <section className='photo'>
       <img src={regular} alt={alt_description} />
-      <div>
-        <h5>{name}</h5>
-        <p>{likes}</p>
+      <div className='photoDetails'>
+        <div>
+          <h5>{name}</h5>
+          <p>{likes}</p>
+        </div>
         <a href={portfolio_url}></a>
       </div>
     </section>

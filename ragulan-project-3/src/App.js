@@ -47,15 +47,13 @@ function App() {
   return (
     <main>
       <section className='search'>
-        <h1>Stockify</h1>
+        <h1 className='logo'>Stockify</h1>
         <h4>Home of High Quality Stock Images</h4>
         <form className='searchForm'>
           <input type='text' placeholder='search' className='searchInput' />
-          <button
-            type='submit'
-            className='submitButton'
-            onClick={handleSubmit}
-          ></button>
+          <button type='submit' className='searchButton' onClick={handleSubmit}>
+            Find Photos
+          </button>
         </form>
       </section>
       <section className='photo'>
