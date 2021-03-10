@@ -41,6 +41,9 @@ function App() {
     console.log('click')
   }
 
+  //  {
+  //    /* iterating over the photos array */
+  //  }
   return (
     <main>
       <section className='search'>
@@ -55,12 +58,11 @@ function App() {
           ></button>
         </form>
       </section>
-      <section className='photos'>
-        <div className='photosContainer'>
-          {/* iterating over the photos array */}
+      <section className='photo'>
+        <div className='photoContainer'>
           {photos.map((image, index) => {
             console.log(image)
-            return <Photo key={image.id} {...image} />
+            return <Photo key={index} {...image} />
           })}
         </div>
       </section>
