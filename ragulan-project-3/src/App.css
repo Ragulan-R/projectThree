@@ -1,6 +1,6 @@
 /* FONT */
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 /* SET UP SNIPPET */
 html {
@@ -242,8 +242,7 @@ body {
   text-align: center;
   background-color: #8ec5fc;
   background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
-  /* background-size: cover; */
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Fredoka One', cursive;
   font-weight: 400;
   line-height: 1.5;
   font-size: 2rem;
@@ -286,13 +285,15 @@ body {
 .photo {
   height: 15rem;
   position: relative;
+  overflow: hidden;
+  /* hide the overlay with the person posting and the likes */
 }
 
 .photo img {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .photoContainer {
@@ -306,11 +307,21 @@ body {
 
 .photoDetails {
   position: absolute;
+  bottom: 0;
+  right: 0;
   width: 100%;
   color: white;
-  display: flex;
-  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.3);
+  justify-content: space-around;
   align-items: center;
+  display: flex;
+  font-size: 1.5rem;
+  transform: translateX(100%);
+  transition: all 0.1s linear;
+}
+
+.photo:hover .photoDetails {
+  transform: translateX(0);
 }
 
 img {

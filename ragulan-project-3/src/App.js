@@ -36,14 +36,14 @@ function App() {
     fetchImages()
   }, [])
 
+  // handles the search button and prevents refresh
   const handleSubmit = (event) => {
     event.preventDefault()
     console.log('click')
   }
 
-  //  {
-  //    /* iterating over the photos array */
-  //  }
+  // iterating over the photos array
+
   return (
     <main>
       <section className='search'>
@@ -56,13 +56,15 @@ function App() {
           </button>
         </form>
       </section>
-      <section className='photo'>
+      <section className='photos'>
         <div className='photoContainer'>
           {photos.map((image, index) => {
             console.log(image)
-            return <Photo key={index} {...image} />
+            return <Photo key={image.id} {...image} />
           })}
         </div>
+        {/* loads more pictures based on a scroll */}
+        {loading && <h2 className='loading'>Loading More Images...</h2>}
       </section>
     </main>
   )

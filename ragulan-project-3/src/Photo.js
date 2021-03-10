@@ -10,10 +10,8 @@ const Photo = ({
     <section className='photo'>
       <img src={regular} alt={alt_description} />
       <div className='photoDetails'>
-        <div>
-          <h5>{name}</h5>
-          <p>{likes}</p>
-        </div>
+        <h5>{name}</h5>
+        <p>{likes} likes</p>
         <a href={portfolio_url}></a>
       </div>
     </section>
