@@ -20,8 +20,10 @@ function App() {
     setLoading(true)
     // url make be changing because it use may search or just get the default images on load
     let url
-    // only use this url if there is nothing in the query, if there is something use the search url, if nothing use default
+
+    // user types something in the search box and once they hit submit, append it to the url
     const urlQuery = `&query=${query}`
+    // only use this url if there is nothing in the query, if there is something use the search url, if nothing use default url
 
     if (query) {
       url = `${searchUrl}?client_id=CodMP8r22yWvgC9SCYoAh9X-dEMQLKt6zKPO-vNiJ3w$${urlQuery}`
@@ -33,6 +35,7 @@ function App() {
       const response = await fetch(url)
       const data = await response.json()
       console.log(data)
+
       // array with the photos
       setPhotos(data)
       // once images are fetched stop loading
@@ -61,9 +64,9 @@ function App() {
     <main>
       <section className='search'>
         <h1 className='logo'>Stockify</h1>
-        <h4>Home of High Quality Stock Images</h4>
+        <h4 className='subHeading'>Home of High Quality Stock Images</h4>
         <form className='searchForm'>
-          {/* value is going to be the state value,  */}
+          {/* value is going to be the state value, and changes based on input */}
           <input
             type='text'
             placeholder='search'
@@ -84,8 +87,8 @@ function App() {
             return <Photo key={image.id} {...image} />
           })}
         </div>
-        {/* loads more pictures based on a scroll */}
-        {loading && <h2 className='loading'>Loading More Images...</h2>}
+        {/* loads more pictures based on a scroll
+        {loading && <h2 className='loading'>Loading More Images...</h2>} */}
       </section>
     </main>
   )

@@ -1,7 +1,5 @@
 /* FONT */
-
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
 /* SET UP SNIPPET */
 html {
   line-height: 1.15;
@@ -242,7 +240,7 @@ body {
   text-align: center;
   background-color: #8ec5fc;
   background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
-  font-family: 'Fredoka One', cursive;
+  font-family: 'Heebo', sans-serif;
   font-weight: 400;
   line-height: 1.5;
   font-size: 2rem;
@@ -259,7 +257,15 @@ body {
 
 .logo {
   text-transform: uppercase;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 900;
   color: white;
+  letter-spacing: 2rem;
+}
+
+.subHeading {
+  font-weight: 100;
+  font-size: 1.5rem;
 }
 
 /* SEARCH BAR AND BUTTON*/
@@ -331,5 +337,5 @@ img {
 
 input {
   border-radius: 30px;
-  padding: 5px 20px;
+  padding: 12px 20px;
 }
