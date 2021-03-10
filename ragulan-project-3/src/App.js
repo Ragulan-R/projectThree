@@ -12,6 +12,7 @@ function App() {
   const [photos, setPhotos] = useState([])
 
   const fetchImages = async () => {
+    // loading is true to fetch the images
     setLoading(true)
     // url make be changing because it use may search or just get the default images on load
     let url
@@ -20,6 +21,10 @@ function App() {
       const response = await fetch(url)
       const data = await response.json()
       console.log(data)
+      // array with the photos
+      setPhotos(data)
+      // once images are fetched stop loading
+      setLoading(false)
     } catch (error) {
       console.log(error)
       setLoading(false)
@@ -31,7 +36,36 @@ function App() {
     fetchImages()
   }, [])
 
-  return <h1> Stockify</h1>
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log('click')
+  }
+
+  return (
+    <main>
+      <section className='search'>
+        <h1>Stockify</h1>
+        <h4>Home of High Quality Stock Images</h4>
+        <form className='searchForm'>
+          <input type='text' placeholder='search' className='searchInput' />
+          <button
+            type='submit'
+            className='submitButton'
+            onClick={handleSubmit}
+          ></button>
+        </form>
+      </section>
+      <section className='photos'>
+        <div className='photosContainer'>
+          {/* iterating over the photos array */}
+          {photos.map((image, index) => {
+            console.log(image)
+            return <Photo key={image.id} {...image} />
+          })}
+        </div>
+      </section>
+    </main>
+  )
 }
 
 export default App
