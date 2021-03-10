@@ -7,9 +7,9 @@ const Photo = ({
   user: { name, portfolio_url },
 }) => {
   return (
-    <section>
+    <section className='photos'>
       <img src='{regular}' alt='alt_description' />
-      <div className='photoDetails'>
+      <div>
         <h5>{name}</h5>
         <p>{likes}</p>
         <a href={portfolio_url}></a>
