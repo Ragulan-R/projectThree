@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import Photo from './Photo'
 
+// main url to get the default photos
 const mainUrl = `https://api.unsplash.com/photos`
 const searchUrl = `https://api.unsplash.com/search/photos`
 
@@ -9,14 +10,25 @@ const searchUrl = `https://api.unsplash.com/search/photos`
 // setting the state so default its not loading
 function App() {
   const [loading, setLoading] = useState(false)
+  // The photo library starts with an empty array
   const [photos, setPhotos] = useState([])
+  // The search field, starts with an empty string
+  const [query, setQuery] = useState('')
 
   const fetchImages = async () => {
     // loading is true to fetch the images
     setLoading(true)
     // url make be changing because it use may search or just get the default images on load
     let url
-    url = `${mainUrl}?client_id=CodMP8r22yWvgC9SCYoAh9X-dEMQLKt6zKPO-vNiJ3w`
+    // only use this url if there is nothing in the query, if there is something use the search url, if nothing use default
+    const urlQuery = `&query=${query}`
+
+    if (query) {
+      url = `${searchUrl}?client_id=CodMP8r22yWvgC9SCYoAh9X-dEMQLKt6zKPO-vNiJ3w$${urlQuery}`
+    } else {
+      url = `${mainUrl}?client_id=CodMP8r22yWvgC9SCYoAh9X-dEMQLKt6zKPO-vNiJ3w`
+    }
+
     try {
       const response = await fetch(url)
       const data = await response.json()
@@ -39,7 +51,8 @@ function App() {
   // handles the search button and prevents refresh
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log('click')
+    // console.log('click')
+    fetchImages()
   }
 
   // iterating over the photos array
@@ -50,7 +63,15 @@ function App() {
         <h1 className='logo'>Stockify</h1>
         <h4>Home of High Quality Stock Images</h4>
         <form className='searchForm'>
-          <input type='text' placeholder='search' className='searchInput' />
+          {/* value is going to be the state value,  */}
+          <input
+            type='text'
+            placeholder='search'
+            className='searchInput'
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            // so when user types the state value changes
+          />
           <button type='submit' className='searchButton' onClick={handleSubmit}>
             Find Photos
           </button>

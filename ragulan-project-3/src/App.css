@@ -317,7 +317,7 @@ body {
   display: flex;
   font-size: 1.5rem;
   transform: translateX(100%);
-  transition: all 0.1s linear;
+  transition: all 0.2s linear;
 }
 
 .photo:hover .photoDetails {
