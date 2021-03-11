@@ -1,5 +1,6 @@
 import React from 'react'
 
+// DESTRUCTURING
 const Photo = ({
   urls: { regular },
   alt_description,
@@ -11,9 +12,9 @@ const Photo = ({
       <img src={regular} alt={alt_description} />
       <div className='photoDetails'>
         <h6>{name}</h6>
-        <p>{likes} likes</p>
+        <h6>{likes} likes</h6>
         <h6>
-          <a href={portfolio_url}>Portfolio</a>
+          <a href={portfolio_url}>Author</a>
         </h6>
       </div>
     </section>

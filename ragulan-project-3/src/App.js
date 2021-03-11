@@ -2,59 +2,63 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import Photo from './Photo'
 
-// main url to get the default photos and search url, so queries can get appended to it
-
-// setting the state of the photos going to be a empty array & setting the state so default its not loading
-// The photo library starts with an empty array
-// The search field, starts with an empty string
-// search - get value and append it to search url
-const mainUrl = `https://api.unsplash.com/photos/`
+// DEFAULT AND SEARCH URL SET UP SO QUERY AND API CAN APPEND TO IT
+const defaultUrl = `https://api.unsplash.com/photos/`
 const searchUrl = `https://api.unsplash.com/search/photos/`
 
 function App() {
+  // BY DEFAULT DONT LOAD
   const [loading, setLoading] = useState(false)
+  // EMPTY ARRAY BY DEFAULT
   const [photos, setPhotos] = useState([])
+  // EMPTY STRING BY DEFAULT
   const [query, setQuery] = useState('')
+  // PAGE NUMBER FROM UNSPLASH
+  const [page, setPage] = useState(1)
 
   const fetchImages = async () => {
-    // loading is true to fetch the images
+    // LOADING TRUE TO FETCH IMAGES
     setLoading(true)
-    // url make be changing because it use may search or just get the default images on load
+    // URL IS LET BECAUSE IT CAN CHANGE BASED ON SEARCH OR DEFAULT
     let url
     const urlQuery = `&query=${query}`
+    const urlPage = `&page=${page}`
 
+    // USE THE DEFAULT IF THERE IS NOTHING INSIDE THE QUERY (SEARCH BAR)
     if (query) {
-      url = `${searchUrl}?client_id=CodMP8r22yWvgC9SCYoAh9X-dEMQLKt6zKPO-vNiJ3w${urlQuery}`
+      url = `${searchUrl}?client_id=CodMP8r22yWvgC9SCYoAh9X-dEMQLKt6zKPO-vNiJ3w${urlPage}${urlQuery}`
     } else {
-      url = `${mainUrl}?client_id=CodMP8r22yWvgC9SCYoAh9X-dEMQLKt6zKPO-vNiJ3w`
+      url = `${defaultUrl}?client_id=CodMP8r22yWvgC9SCYoAh9X-dEMQLKt6zKPO-vNiJ3w${urlPage}`
     }
 
+    // THE RESPONSE STORED IN "DATA" AFTER ITS FETCHED
     try {
       const response = await fetch(url)
       const data = await response.json()
       console.log(data)
-      // array with the photos
 
-      // setPhotos(() => {
-      //   if (query) {
-      //     return [...data.results]
-      //   }
-      // })
-
-      // once images are fetched stop loading
+      // THE ARRAY OF DATA, ONCE WE HAVE THE DATA, STOP LOADING
+      // IF THERE IS SOMETHING IN THE QUERY TARGET DATA.RESULTS, IF NOT POSSIBLE GO BACK TO THE ORIGINAL
       setLoading(false)
+      setPhotos(() => {
+        if (query) {
+          return [...data.results]
+        } else {
+          return [...data]
+        }
+      })
     } catch (error) {
       console.log(error)
       setLoading(false)
     }
   }
 
-  // using useeffect so it only runs when the app loads
+  // USE-EFFECT TO STOP RE-RENDERING, REFETCH WHEN PAGE CHANGES
   useEffect(() => {
     fetchImages()
-  }, [])
+  }, [page])
 
-  // HANDLES SEARCH BUTTON
+  // HANDLES SEARCH BUTTON AND EVENT OBJECT
   const handleSubmit = (event) => {
     event.preventDefault()
     fetchImages()
@@ -73,7 +77,7 @@ function App() {
             className='searchInput'
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            // so when user types the state value changes
+            // VALUE IS GOING TO BE THE STATE VALUE
           />
           <button type='submit' className='searchButton' onClick={handleSubmit}>
             Find Photos
@@ -81,9 +85,10 @@ function App() {
         </form>
       </section>
 
+      {/* ITERATE OVER PHOTOS ARRAY  AND DISPLAY THE CODE IN THE PHOTO.JS FILE, PASSING PROPERTIES TO THE PHOTO COMPONENT */}
       <section className='photos'>
         <div className='photoContainer'>
-          {photos.map((image, index) => {
+          {photos.map((image, id) => {
             return <Photo key={image.id} {...image} />
           })}
         </div>
@@ -96,7 +101,3 @@ function App() {
 }
 
 export default App
-// user types something in the search box and once they hit submit, append it to the url
-// const urlQuery = `&query=${query}`
-// only use this url if there is nothing in the query, if there is something use the search url, if nothing use default url
-// url = `${searchUrl}?client_id=CodMP8r22yWvgC9SCYoAh9X-dEMQLKt6zKPO-vNiJ3w$${urlQuery}`

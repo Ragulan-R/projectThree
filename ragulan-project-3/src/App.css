@@ -291,14 +291,14 @@ body {
   height: 15rem;
   position: relative;
   overflow: hidden;
-  /* hide the overlay with the person posting and the likes */
+  /* HIDE OVERLAY THAT HAS THE DETAILS */
 }
 
-.photo img {
+.photo > img {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .photoContainer {
