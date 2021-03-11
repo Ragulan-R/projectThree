@@ -244,7 +244,7 @@ body {
   background-size: cover;
   font-family: 'Heebo', sans-serif;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.1;
   font-size: 2rem;
 }
 
@@ -259,26 +259,28 @@ body {
 .subHeading {
   font-weight: 100;
   font-size: 1.5rem;
+  color: whitesmoke;
 }
 
 /* SEARCH BAR AND BUTTON*/
 .search {
   width: 95vw;
-  padding: 3rem;
+  padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .searchButton {
   padding: 0.8rem;
-  border-radius: 30px;
+  border-radius: 40px;
   color: black;
   margin: 0.5rem;
+  font-size: 1.5rem;
 }
 
 /* PHOTOS */
 .section {
-  width: 90vw;
+  width: 95vw;
   margin: 0 auto;
   max-width: 1200px;
 }
@@ -302,11 +304,11 @@ body {
 }
 
 .photoContainer {
-  width: 90vw;
+  width: 95vw;
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  gap: 2.5rem;
+  gap: 3rem;
   grid-template-columns: repeat(3, 1fr);
 }
 
@@ -335,7 +337,7 @@ img {
 }
 
 input {
-  border-radius: 30px;
+  border-radius: 40px;
   padding: 12px 20px;
 }
 
@@ -343,5 +345,10 @@ input {
 @media screen and (max-width: 425px) {
   .photoContainer {
     grid-template-columns: repeat(1, 1fr);
+    justify-content: center;
+    align-items: center;
+  }
+  input {
+    font-size: 20px;
   }
 }
